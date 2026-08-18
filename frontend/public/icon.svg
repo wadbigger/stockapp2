@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="96" fill="#2563eb"/>
+  <g transform="translate(256,256)">
+    <!-- Box -->
+    <rect x="-120" y="-60" width="240" height="160" rx="16" fill="none" stroke="white" stroke-width="24"/>
+    <line x1="-120" y1="-10" x2="120" y2="-10" stroke="white" stroke-width="24"/>
+    <line x1="-30" y1="-10" x2="-30" y2="-60" stroke="white" stroke-width="24"/>
+    <line x1="30" y1="-10" x2="30" y2="-60" stroke="white" stroke-width="24"/>
+    <!-- Arrow up -->
+    <line x1="0" y1="80" x2="0" y2="30" stroke="white" stroke-width="24" stroke-linecap="round"/>
+    <polyline points="-25,55 0,30 25,55" fill="none" stroke="white" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <text x="256" y="440" text-anchor="middle" fill="white" font-family="Arial,sans-serif" font-weight="bold" font-size="72">STOCK</text>
+</svg>

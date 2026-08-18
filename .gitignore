@@ -1,0 +1,45 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+dist-ssr/
+build/
+
+# Environment files (contain secrets) — keep only templates tracked
+.env
+.env.local
+.env.*.local
+backend/.env
+frontend/.env
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Database backups (may contain sensitive tenant data)
+backend/backups/
+backend/backend/
+**/backups/*.dump
+
+# Uploads (runtime user content)
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+# Editor / OS
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+Thumbs.db
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Cursor local metadata
+.cursor/

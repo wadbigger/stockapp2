@@ -1,0 +1,62 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: stockapp_db
+    restart: always
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-stockapp}
+      POSTGRES_USER: ${POSTGRES_USER:-stockapp}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-stockapp_secret_2026}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U ${POSTGRES_USER:-stockapp}']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: stockapp_backend
+    restart: always
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: postgresql://${POSTGRES_USER:-stockapp}:${POSTGRES_PASSWORD:-stockapp_secret_2026}@postgres:5432/${POSTGRES_DB:-stockapp}
+      JWT_SECRET: ${JWT_SECRET:-CHANGEZ_MOI_jwt_secret_64_chars_minimum}
+      JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET:-CHANGEZ_MOI_refresh_secret_64_chars_min}
+      SMTP_HOST: ${SMTP_HOST:-}
+      SMTP_PORT: ${SMTP_PORT:-587}
+      SMTP_USER: ${SMTP_USER:-}
+      SMTP_PASS: ${SMTP_PASS:-}
+      ADMIN_EMAIL: ${ADMIN_EMAIL:-admin@example.com}
+      PORT: '3000'
+    volumes:
+      - uploads_data:/app/uploads
+    ports:
+      - '3000:3000'
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_API_URL: ${VITE_API_URL:-}
+    container_name: stockapp_frontend
+    restart: always
+    ports:
+      - '${APP_PORT:-80}:80'
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:
+  uploads_data:

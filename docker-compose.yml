@@ -25,6 +25,17 @@ services:
     container_name: stockapp_backend
     restart: always
     environment:
+    
+      DB_HOST: postgres
+      DB_PORT: "5432"
+      DB_NAME: stockapp
+      DB_USER: stockapp
+      PGHOST: postgres
+      PGPORT: "5432"
+      DATABASE_URL: postgresql://stockapp:stockapp_secret_2026@db:5432/stockapp
+    depends_on:
+      - postgres
+      
       NODE_ENV: production
       DATABASE_URL: postgresql://${POSTGRES_USER:-stockapp}:${POSTGRES_PASSWORD:-stockapp_secret_2026}@postgres:5432/${POSTGRES_DB:-stockapp}
       JWT_SECRET: ${JWT_SECRET:-CHANGEZ_MOI_jwt_secret_64_chars_minimum}

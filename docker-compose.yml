@@ -9,7 +9,6 @@ services:
       POSTGRES_DB: ${POSTGRES_DB:-stockapp}
       POSTGRES_USER: ${POSTGRES_USER:-stockapp}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-stockapp_secret_2026}
-     
       - postgres_data:/var/lib/postgresql/data
     
     healthcheck:

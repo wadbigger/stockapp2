@@ -1,6 +1,6 @@
 import axios, { AxiosError } from 'axios';
 
-const API_URL = import.meta.env.VITE_API_URL || 'https://api.stockapp.shop:3000';
+const API_URL = import.meta.env.VITE_API_URL || '/api:3000';
 
 export const api = axios.create({
   baseURL: `${API_URL}/api`,
